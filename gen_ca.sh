@@ -27,10 +27,11 @@ openssl req -config openssl.cnf \
   -out certs/ca.pem
 chmod 444 certs/ca.pem
 
-echo -e "\n--------------IMPORTANT--------------
+echo -e "
 Key: ${HOME}/ca/private/ca-key.pem
 Cert: ${HOME}/ca/certs/ca.pem
 
+--------------IMPORTANT--------------
 Store the Root CA cert and key on a flash drive. This should be kept in a secure location, like a bank vault.
 If you are NOT generating an intermediate CA, delete the Root CA key from your computer before restoring internet access (for production PKI).
 ------------------------------------\n"

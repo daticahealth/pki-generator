@@ -39,6 +39,10 @@ cat intermediate/certs/intermediate.pem \
   certs/ca.pem > intermediate/certs/ca-chain.pem
 chmod 444 intermediate/certs/ca-chain.pem
 
-echo -e "\n--------------IMPORTANT--------------
+echo -e "
+Key: ${HOME}/ca/intermediate/private/intermediate-key.pem
+Cert: ${HOME}/ca/intermediate/certs/intermediate.pem
+
+--------------IMPORTANT--------------
 Delete the Root CA key from your computer before restoring internet access (for production PKI)
 ------------------------------------\n"
