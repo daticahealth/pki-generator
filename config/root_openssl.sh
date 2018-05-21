@@ -38,9 +38,9 @@ policy            = policy_strict
 [ policy_strict ]
 # The root CA should only sign intermediate certificates that match.
 # See the POLICY FORMAT section of 'man ca'.
-countryName             = match
-stateOrProvinceName     = match
-organizationName        = match
+countryName             = supplied
+stateOrProvinceName     = supplied
+organizationName        = supplied
 organizationalUnitName  = optional
 emailAddress            = optional
 commonName              = supplied
@@ -97,7 +97,7 @@ keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 # Extensions for a typical intermediate CA ('man x509v3_config').
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid:always,issuer
-basicConstraints = critical, CA:true, pathlen:0
+basicConstraints = critical, CA:true
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 
 [ usr_cert ]

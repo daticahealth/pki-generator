@@ -38,9 +38,9 @@ policy            = policy_loose
 [ policy_strict ]
 # The root CA should only sign intermediate certificates that match.
 # See the POLICY FORMAT section of 'man ca'.
-countryName             = match
-stateOrProvinceName     = match
-organizationName        = match
+countryName             = supplied
+stateOrProvinceName     = supplied
+organizationName        = supplied
 organizationalUnitName  = optional
 emailAddress            = optional
 commonName              = supplied
@@ -73,7 +73,7 @@ x509_extensions     = v3_ca
 countryName                     = Country Name (2 letter code)
 stateOrProvinceName             = State or Province Name
 localityName                    = Locality Name
-0.organizationName              = Organization Name
+0.organizationName              = Organization ID
 organizationalUnitName          = Organizational Unit Name
 emailAddress                    = Email Address
 commonName                      = Common Name
@@ -82,7 +82,7 @@ commonName                      = Common Name
 countryName_default             = US
 stateOrProvinceName_default     = Wisconsin
 localityName_default            = Madison
-0.organizationName_default      = Datica Health Inc
+0.organizationName_default      = 007132c6-6caa-44fe-8f16-827b5769cc5c
 organizationalUnitName_default  = Engineering
 emailAddress_default            = admin@datica.com
 
@@ -97,7 +97,7 @@ keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 # Extensions for a typical intermediate CA ('man x509v3_config').
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid:always,issuer
-basicConstraints = critical, CA:true, pathlen:0
+basicConstraints = critical, CA:true
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 
 [ usr_cert ]

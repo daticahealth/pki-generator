@@ -1,7 +1,7 @@
 #! /bin/bash -e
 
 # Time in days
-ROOT_CA_LIFESPAN=${1:-"7300"}
+ROOT_CA_LIFESPAN=${1:-"36500"}
 
 echo -e "Generating Root CA.\nIf this is production PKI, turn off WiFi and remove any other external connections to ensure your Root CA key is air-gapped."
 read -n 1 -p "Ready to proceed? (y/n) " proceed

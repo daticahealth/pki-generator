@@ -1,7 +1,7 @@
 #! /bin/bash -e
 
 # Time in days
-INTERMEDIATE_CA_LIFESPAN=${1:-"180"}
+INTERMEDIATE_CA_LIFESPAN=${1:-"5475"}
 
 echo -e "Generating Intermediate CA. Must have a Root CA key at '${HOME}/ca/private/ca-key.pem' and cert at '${HOME}/ca/certs/ca.pem'.\nIf this is production PKI, turn off WiFi and remove any other external connections to ensure your Root CA key is air-gapped."
 read -n 1 -p "Ready to proceed? (y/n) " proceed
