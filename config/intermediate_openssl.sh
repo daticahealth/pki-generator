@@ -1,4 +1,23 @@
 #! /bin/bash -e
+
+DNS_SANS="$1"
+IP_SANS="$2"
+ALT_NAMES=""
+
+if [ "$DNS_SANS" ] || [ "$IP_SANS" ]; then
+  ALT_NAMES="subjectAltName = @alt_names\n\n[ alt_names ]"
+  i=0
+  for dns in $DNS_SANS; do
+    i=$(expr $i + 1)
+    ALT_NAMES="$ALT_NAMES\nDNS.$i = $dns"
+  done
+  i=0
+  for ip in $IP_SANS; do
+    i=$(expr $i + 1)
+    ALT_NAMES="$ALT_NAMES\nIP.$i = $ip"
+  done
+fi
+
 cat <<EOF
 # OpenSSL intermediate CA configuration file.
 
@@ -27,7 +46,7 @@ crl_extensions    = crl_ext
 default_crl_days  = 30
 
 # SHA-1 is deprecated, so use SHA-2 instead.
-default_md        = sha256
+default_md        = sha512
 
 name_opt          = ca_default
 cert_opt          = ca_default
@@ -63,7 +82,7 @@ distinguished_name  = req_distinguished_name
 string_mask         = utf8only
 
 # SHA-1 is deprecated, so use SHA-2 instead.
-default_md          = sha256
+default_md          = sha512
 
 # Extension to add when the -x509 option is used.
 x509_extensions     = v3_ca
@@ -112,13 +131,14 @@ extendedKeyUsage = clientAuth, emailProtection
 
 [ server_cert ]
 # Extensions for server certificates ('man x509v3_config').
-basicConstraints = CA:FALSE
+basicConstraints = critical, CA:FALSE
 nsCertType = server
 nsComment = "OpenSSL Generated Server Certificate"
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer:always
 keyUsage = critical, digitalSignature, keyEncipherment
-extendedKeyUsage = serverAuth
+extendedKeyUsage = serverAuth, clientAuth
+$(echo -e ${ALT_NAMES})
 
 [ crl_ext ]
 # Extension for CRLs ('man x509v3_config').

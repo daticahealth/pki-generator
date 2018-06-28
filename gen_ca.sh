@@ -18,6 +18,9 @@ chmod 700 private
 touch index.txt
 echo 1000 > serial
 
+# ./dir_structure -r
+# cd ca
+
 openssl genrsa -out private/ca-key.pem 4096
 chmod 400 private/ca-key.pem
 

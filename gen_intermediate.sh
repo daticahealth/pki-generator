@@ -19,6 +19,9 @@ touch index.txt
 echo 1000 > serial
 echo 1000 > crlnumber
 
+# ./dir_structure -i
+# cd ca/intermediate
+
 openssl genrsa -out private/intermediate-key.pem 4096
 chmod 400 private/intermediate-key.pem
 
